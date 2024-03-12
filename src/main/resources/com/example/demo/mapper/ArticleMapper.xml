@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ArticleMapper">
+    <!--动态sql-->
+    <select id="list" resultType="com.example.demo.pojo.Article">
+        select * from  article
+         <where>
+             <if test="categoryId != null">
+                 category_id=#{categoryId}
+             </if>
+
+             <if test="state != null">
+                and state =#{state}
+             </if>
+
+        and create_user=#{userId}
+         </where>
+    </select>
+
+    <select id="Mlist" resultType="com.example.demo.pojo.Article">
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                category_id=#{categoryId}
+            </if>
+            <if test="state != null">
+                and state =#{state}
+            </if>
+        </where>
+    </select>
+
+    <select id="articleList" resultType="com.example.demo.pojo.Article">
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                category_id=#{categoryId}
+            </if>
+
+            <if test="creatorId != null">
+                and create_user=#{creatorId}
+            </if>
+        and state =#{state}
+        </where>
+    </select>
+</mapper>
